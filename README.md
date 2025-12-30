@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+---
 
-## Getting Started
+# Pastebin-Lite
 
-First, run the development server:
+A secure, ephemeral text sharing application built with Next.js. Users can create pastes with optional expiration settings (Time-to-Live and Max Views).
+
+**Live Demo:** [https://pastebin.satyamm.in](https://pastebin.satyamm.in)
+
+## 🛠 Tech Stack
+
+- **Framework:** Next.js (Pages Router)
+- **Database:** MongoDB (via Mongoose)
+- **Styling:** Tailwind CSS
+- **UI Components:** Shadcn UI & Lucide React
+- **Notifications:** Sonner
+- **Deployment:** Vercel
+
+## 💾 Persistence Layer Choice
+
+**MongoDB Atlas** was chosen for persistence.
+
+- **Why:** The document-based model maps perfectly to JSON paste data.
+- **Robustness:** utilized MongoDB's atomic operators (`$inc`) to strictly enforce **Max View** limits. This ensures thread safety and prevents race conditions where concurrent requests could exceed the view limit.
+
+## ✅ Functional Requirements
+
+- [x] Create pastes with arbitrary text.
+- [x] **TTL Expiry:** Pastes automatically expire after a set duration.
+- [x] **View Limits:** Pastes delete themselves after a specific number of reads (Atomic decrement).
+- [x] **Test Mode:** Supports `x-test-now-ms` header for deterministic time travel testing.
+- [x] **Health Check:** `/api/healthz` endpoint verifying DB connectivity.
+- [x] **Responsive UI:** Full mobile support with Dark/Light mode.
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/satyammjha/pastebin-assignment.git
+cd pastebin-assignment
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+# or
+bun install
+```
+
+### 3. Environment Setup
+
+Create a `.env.local` file in the root directory. You can copy the example template:
+
+```bash
+cp .env.example .env.local
+```
+
+Fill in your variables in `.env.local`:
+
+```bash
+MONGODB_URI="your_mongodb_connection_string"
+# Set to 1 only if testing time-travel logic locally
+TEST_MODE=1
+```
+
+### 4. Run the development server
 
 ```bash
 npm run dev
 # or
-yarn dev
-# or
-pnpm dev
-# or
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 👤 Author
 
-## Learn More
+**Satyam Jha**
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **LinkedIn:** [linkedin.com/in/satyammjha](https://www.linkedin.com/in/satyammjha)
+- **Website:** [satyamm.in](https://satyamm.in)
