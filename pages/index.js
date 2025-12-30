@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Layout from '@/components/Layout';
-import PasteForm from '@/components/Home/PasteForm';
-import PasteHistory from '@/components/Home/PasteHistory';
+import PasteForm from '@/components/home/PasteForm';
+import PasteHistory from '@/components/home/PasteHistory';
 
 export default function Home() {
     const [createdPastes, setCreatedPastes] = useState([]);
